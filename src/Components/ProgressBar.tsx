@@ -2,7 +2,12 @@ import React from "react";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-export default function ProgressBar({percent, title}) {
+interface CircularData {
+    percent: number,
+    title: string
+}
+
+export default function ProgressBar({percent, title}: CircularData) {
   return (
     <>
       <div className="prbar">

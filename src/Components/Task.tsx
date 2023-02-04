@@ -1,16 +1,16 @@
 import React from "react";
-import "../todostyle.css";
+import "../App.css";
 
 //PULL REQ INITIALIZED 
 
-interface Props {
+export interface Props {
   id: number, 
   name: string,
   assignee: string,
   startDate: string,
   endDate: string,
-  setTodoDone: ()=>Promise<void>,
-  deleteTask: ()=>Promise<void>,
+  setTodoDone: () => Promise<void>,
+  deleteTask: () => Promise<void>,
   doneAttribute: boolean
 }
 
