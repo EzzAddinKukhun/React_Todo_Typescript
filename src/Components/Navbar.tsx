@@ -1,6 +1,6 @@
 import React from "react";
 import todo_logo from "../imgs/todo_logo.jpg";
-import "../todostyle.css";
+import "../App.css";
 
 export default function Navbar() {
   return (

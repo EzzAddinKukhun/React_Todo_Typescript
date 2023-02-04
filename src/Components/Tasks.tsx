@@ -1,25 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Task from "./Task";
 import Swal from "sweetalert2";
-// import Fade from 'react-reveal/Fade';
-import Fade from 'react-reveal' ;
+
 import Modal from "./Modal";
 import TableHeader from './TableHeader';
 
-type Todo = {
+export type Todo = {
   id: number,
   name: string,
   assignee: string,
   startDate: string,
   endDate: string,
-  done: number
+  done: boolean
 
 }
 
 export default function Tasks() {
-  let [dataParsed, setDataParsed] = useState<Todo []>();
-  let [toggle, setToggle] = useState<number>(0);
+  let [dataParsed, setDataParsed] = useState<Todo []>([]);
+  let [toggle, setToggle] = useState<boolean>(false);
   let [token, setToken] = useState<string>("");
+  let inputRef = useRef<HTMLInputElement>(null); 
 
 
   async function getTasks() {
@@ -44,7 +44,7 @@ export default function Tasks() {
       assignee,
       startDate,
       endDate,
-      done: 0
+      done: false
     };
 
     await fetch(`http://localhost:8000/addNewTodo`, {
@@ -152,14 +152,15 @@ export default function Tasks() {
 
   return (
     <>
-      <Fade>
         <div className="tasks-container">
           <div className="tasks-table">
             <div className="controlBar">
               <div className="search-input">
-                <input onChange={(e) => {
+                <input
+                ref={inputRef}
+                onChange={() => {
 
-                  setToken(e.target.value);
+                  setToken(inputRef.current?.value+"");
 
                 }} type="text" placeholder="Search"></input>
               </div>
@@ -193,7 +194,6 @@ export default function Tasks() {
             </div>
           </div>
         </div>
-      </Fade>
 
       <Modal addNewTodo={addNewTodo} />
 

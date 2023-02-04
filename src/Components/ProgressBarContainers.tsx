@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import ProgressBar from "./ProgressBar";
-import Zoom from 'react-reveal/Zoom';
-import Fade from 'react-reveal/Fade';
+import { Todo } from "./Tasks";
+const Fade = require('react-reveal/Fade')
+const Zoom = require('react-reveal/Zoom')
+
 
 export default function ProgressBarContainers() {
 
-  let [dataParsed, setDataParsed] = useState([]);
+  let [dataParsed, setDataParsed] = useState<Todo []>([]);
 
 
   async function getTasks() {
@@ -27,7 +29,7 @@ export default function ProgressBarContainers() {
     let donesCount = 0;
     let todoCount = 0;
     dataParsed.map((task) => {
-      if (task.done == 1) {
+      if (task.done == true) {
         donesCount++;
       }
       else {
@@ -40,13 +42,9 @@ export default function ProgressBarContainers() {
 
     return (
       <>
-        <Fade>
-          <ProgressBar title={"DONE(" + donesCount + ")"} percent={parseInt(donesPercent)} />
-        </Fade>
+          <ProgressBar title={"DONE(" + donesCount + ")"} percent={parseInt(donesPercent.toString())} />
 
-        <Fade>
-          <ProgressBar title={"TODO(" + todoCount + ")"} percent={parseInt(todoPercent)} />
-        </Fade>
+          <ProgressBar title={"TODO(" + todoCount + ")"} percent={parseInt(todoPercent.toString())} />
       </>
     );
   }
@@ -63,7 +61,10 @@ export default function ProgressBarContainers() {
       <div className="prog-container">
         <div className="introduction">
           <h2>
-            <Zoom cascade left>My Dashboard</Zoom></h2>
+            <Zoom cascade left>
+                My Dashboard
+                </Zoom>
+                </h2>
           <p>
             <Zoom cascade left>
               This is a small dasboard for adding tasks for users to do them, and

@@ -1,11 +1,17 @@
 import React from 'react'
 
-export default function Modal({addNewTodo}) {
+interface Props {
+    addNewTodo: (name: string, assignee:string, startDate: string, endDate:string)=> Promise<void>
+}
+
+
+
+export default function Modal( {addNewTodo}: Props) {
     return (
         <div
             className="modal fade"
             id="exampleModal"
-            tabindex="-1"
+            tabIndex={-1}
             aria-labelledby="exampleModalLabel"
             aria-hidden="true"
         >
@@ -30,7 +36,7 @@ export default function Modal({addNewTodo}) {
                                 id="taskname"
                                 placeholder="name@example.com"
                             />
-                            <label for="floatingInput">Task Name</label>
+                            <label>Task Name</label>
                         </div>
                         <div className="form-floating mb-3">
                             <input
@@ -39,7 +45,7 @@ export default function Modal({addNewTodo}) {
                                 id="assignee"
                                 placeholder="name@example.com"
                             />
-                            <label for="floatingInput">Assignee</label>
+                            <label>Assignee</label>
                         </div>
                         <div className="w-100 mb-3">
                             <h6>Start Date</h6>
@@ -56,11 +62,11 @@ export default function Modal({addNewTodo}) {
                             className="btn btn-primary"
                             data-bs-dismiss="modal"
                             onClick={() => {
-                                var taskname = document.getElementById("taskname").value;
-                                var assignee = document.getElementById("assignee").value;
-                                var startDate = document.getElementById("startdate").value;
-                                var endDate = document.getElementById("enddate").value;
-                                addNewTodo(taskname, assignee, startDate, endDate);
+                                let  tasknameInput= document.getElementById("taskname") as HTMLInputElement;
+                                let  assigneeInput= document.getElementById("assignee") as HTMLInputElement;
+                                let  startDateInput= document.getElementById("startdate") as HTMLInputElement;
+                                let  endDateInput= document.getElementById("enddate") as HTMLInputElement;
+                                addNewTodo(tasknameInput.value, assigneeInput.value, startDateInput.value, endDateInput.value);
                             }}
                         >
                             Save changes
