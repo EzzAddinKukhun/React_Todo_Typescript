@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Task from "./Task";
 import Swal from "sweetalert2";
-// import Fade from 'react-reveal/Fade';
-import Fade from 'react-reveal' ;
+
 import Modal from "./Modal";
 import TableHeader from './TableHeader';
 
@@ -12,13 +11,13 @@ type Todo = {
   assignee: string,
   startDate: string,
   endDate: string,
-  done: number
+  done: boolean
 
 }
 
 export default function Tasks() {
-  let [dataParsed, setDataParsed] = useState<Todo []>();
-  let [toggle, setToggle] = useState<number>(0);
+  let [dataParsed, setDataParsed] = useState<Todo []>([]);
+  let [toggle, setToggle] = useState<boolean>(false);
   let [token, setToken] = useState<string>("");
 
 
@@ -152,7 +151,6 @@ export default function Tasks() {
 
   return (
     <>
-      <Fade>
         <div className="tasks-container">
           <div className="tasks-table">
             <div className="controlBar">
@@ -193,7 +191,6 @@ export default function Tasks() {
             </div>
           </div>
         </div>
-      </Fade>
 
       <Modal addNewTodo={addNewTodo} />
 

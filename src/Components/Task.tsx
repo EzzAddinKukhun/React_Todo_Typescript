@@ -9,9 +9,9 @@ interface Props {
   assignee: string,
   startDate: string,
   endDate: string,
-  setTodoDone: Promise<void>,
-  deleteTask: Promise<void>,
-  doneAttribute: number
+  setTodoDone: ()=>Promise<void>,
+  deleteTask: ()=>Promise<void>,
+  doneAttribute: boolean
 }
 
 export default function Task({ id, name, assignee, startDate, endDate, setTodoDone, deleteTask, doneAttribute }: Props) {

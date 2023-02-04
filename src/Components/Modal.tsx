@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 export default function Modal({addNewTodo}) {
     return (
         <div
