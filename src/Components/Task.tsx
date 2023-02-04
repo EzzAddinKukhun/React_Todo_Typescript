@@ -1,6 +1,8 @@
 import React from "react";
 import "../todostyle.css";
 
+//PULL REQ INITIALIZED 
+
 interface Props {
   id: number, 
   name: string,
